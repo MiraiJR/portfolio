@@ -1,0 +1,55 @@
+name:  Prepare source build
+
+on:
+  push:
+    branches:
+      - 'main'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  prepare-source-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Create gh-pages branch if it does not exist
+        run: |
+          git fetch origin gh-pages || echo "gh-pages branch does not exist"
+          if [ $(git branch -r | grep -c "origin/gh-pages") -eq 0 ]; then
+            echo "Creating gh-pages branch"
+            git checkout --orphan gh-pages
+            git rm -rf .
+            cp -r ./dist/* . # Adjust if your build output is different
+            git add .
+            git commit -m "Initial commit on gh-pages"
+            git push origin gh-pages
+          else
+            echo "gh-pages branch exists"
+          fi
+
+      - name: Deploy to gh-pages
+        if: github.ref == 'refs/heads/gh-pages'
+        run: |
+          git checkout gh-pages
+          git rm -rf . # Remove old files
+          cp -r ./dist/* . # Copy built files to root
+          git add .
+          git commit -m "Deploy to gh-pages"
+          git push origin gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
