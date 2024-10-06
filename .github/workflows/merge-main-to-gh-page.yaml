@@ -16,10 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Merge main -> github-pages
+      - name: Merge main -> gh-pages
         uses: devmasx/merge-branch@v1.4.0
         with:
           type: now
           from_branch: main
-          target_branch: github-pages
+          target_branch: gh-pages
           github_token: ${{ secrets.GH_TOKEN }}
