@@ -113,7 +113,7 @@ export const personalProjects: PersonalProjectModel[] = [
       },
       {
         label: "FrontEnd",
-        url: "https://github.com/MiraiJR/mangahay.top",
+        url: "https://github.com/MiraiJR/mangahay.top_be",
       },
     ],
     team: {
