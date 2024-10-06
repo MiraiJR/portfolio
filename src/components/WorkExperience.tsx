@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export const WorkExperience = () => {
   return (
     <div id="experience" className="bg-black py-8">
-      <h1 className="text-center text-3xl font-bold text-white mb-10">
+      <h1 className="text-center text-3xl font-bold text-yellow-400 mb-10">
         Work Experience
       </h1>
       <Swiper
