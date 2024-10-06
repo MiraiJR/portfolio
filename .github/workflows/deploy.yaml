@@ -37,21 +37,15 @@ jobs:
       - name: Build project
         run: npm run build
       
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-          path: gh-pages  
+      - uses: actions/checkout@v3
 
-      - name: Merge changes
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          cp -r dist/* gh-pages/  # Copy built files into gh-pages directory
-          cd gh-pages
-          git add .  # Stage changes
-          git commit -m "Deploy updated content" || echo "No changes to commit"  # Commit changes
-          git push origin gh-pages  # Push changes to gh-pages branch
+      - name: Merge main -> deploy-branch
+        uses: devmasx/merge-branch@v1.4.0
+        with:
+          type: now
+          from_branch: main
+          target_branch: github-pages
+          github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
