@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["main", "gh-pages"]
+    branches: ["gh-pages"]
   workflow_dispatch:
 
 permissions:
@@ -21,39 +21,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
+      - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: main  
         
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20' 
-
-      - name: Install dependencies
-        run: npm install 
-
-      - name: Build project
-        run: npm run build
-      
-      - uses: actions/checkout@v3
-
-      - name: Merge main -> deploy-branch
-        uses: devmasx/merge-branch@v1.4.0
-        with:
-          type: now
-          from_branch: main
-          target_branch: github-pages
-          github_token: ${{ secrets.GH_TOKEN }}
-
       - name: Setup Pages
         uses: actions/configure-pages@v3
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'gh-pages'
+          path: 'dist' 
           
       - name: Deploy to GitHub Pages
         id: deployment
