@@ -108,11 +108,11 @@ export const personalProjects: PersonalProjectModel[] = [
     description: "Read comic website for everyone",
     githubs: [
       {
-        label: "BackEnd",
+        label: "FrontEnd",
         url: "https://github.com/MiraiJR/mangahay.top",
       },
       {
-        label: "FrontEnd",
+        label: "BackEnd",
         url: "https://github.com/MiraiJR/mangahay.top_be",
       },
     ],
