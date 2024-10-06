@@ -97,7 +97,7 @@ export const contactInformation: ContactModel[] = [
   },
   {
     app: FaLinkedin,
-    url: "https://www.facebook.com/TruongVanHao111",
+    url: "https://www.linkedin.com/in/v%C4%83n-h%C3%A0o-tr%C6%B0%C6%A1ng-612028239/",
   },
 ];
 
