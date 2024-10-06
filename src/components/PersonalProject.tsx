@@ -6,7 +6,7 @@ import { Navigation, Pagination } from "swiper/modules";
 
 export const PersonalProject = () => {
   return (
-    <div id="personalproject" className="bg-black py-10 px-5 lg:px-20">
+    <div id="personalproject" className="bg-black ">
       <h1 className="text-4xl text-yellow-500 font-bold text-center mb-8">
         My Personal Projects
       </h1>

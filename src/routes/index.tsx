@@ -6,19 +6,20 @@ import { TechnicalSkill } from "../components/TechicalSkill";
 import { WorkExperience } from "../components/WorkExperience";
 import { Contact } from "../components/Contact";
 import { PersonalProject } from "../components/PersonalProject";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { FaArrowUp } from "react-icons/fa";
-
 export const Index = () => {
   return (
     <div className="p-5 flex flex-col gap-10">
       <Header />
-      <AboutMe />
-      <Academic />
-      <TechnicalSkill />
-      <WorkExperience />
-      <PersonalProject />
-      <Contact />
+      <Suspense fallback={<div className="text-yellow-400">Loading...</div>}>
+        <AboutMe />
+        <Academic />
+        <TechnicalSkill />
+        <WorkExperience />
+        <PersonalProject />
+        <Contact />
+      </Suspense>
       <ScrollToTop />
     </div>
   );
