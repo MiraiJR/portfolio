@@ -3,6 +3,7 @@ import { PersonalProjectModel } from "../data/type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Navigation, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 
 export const PersonalProject = () => {
   return (
@@ -90,6 +91,22 @@ const SinglePersonalProject = ({ data }: SinglePersonalProjectProps) => {
             </li>
           ))}
         </ul>
+      </div>
+      <div>
+        <span className="text-gray-400">Demo images:</span>
+        <div className="flex flex-wrap">
+          {data.images.map((image, index) => (
+            <div key={index} className="w-1/2 p-2">
+              <motion.img
+                src={`/assets/${data.folder}/${image}`}
+                alt={image}
+                className="w-full h-auto"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

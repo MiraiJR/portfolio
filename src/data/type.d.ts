@@ -69,6 +69,7 @@ export interface PersonalProjectModel {
   };
   responsilities: string[];
   techStack: string[];
+  images: string[];
 }
 
 export interface GithubRepo {
